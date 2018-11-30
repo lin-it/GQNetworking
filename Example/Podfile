@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'GQNetworking_Example' do
+  pod 'GQNetworking', :path => '../'
+  pod 'AFNetworking'
+
+  target 'GQNetworking_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

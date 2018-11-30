@@ -1,0 +1,6 @@
+framework module GQNetworking {
+  umbrella header "GQNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}
