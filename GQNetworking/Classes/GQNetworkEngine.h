@@ -7,12 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface GQNetworkEngine : NSObject
 
 + (GQNetworkEngine *)sharedEngine;
 
+- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
+                                       URLString:(NSString *)URLString
+                                      parameters:(id)parameters
+                                         headers:(NSDictionary *)headers
+                                         success:(void (^)(NSURLSessionDataTask *, id))success
+                                         failure:(void (^)(NSURLSessionDataTask *, NSError *))failure;
+
 @end
 
-NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 //
 
 #import "GQViewController.h"
+#import <GQNetworking/GQNetworkEngine.h>
 
 @interface GQViewController ()
 
@@ -17,7 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [GQNetworkEngine GET:@"api/xxx" parameters:@{} progress:nil success:^(id data) {
+        NSLog(@"%@",data);
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
