@@ -8,7 +8,7 @@
 #import "GQNetworkEngine.h"
 #import <AFNetworking/AFNetworking.h>
 
-
+static id<GQNetworkEngineProtocol> delegate;
 @interface GQNetworkEngine()
 
 @property (nonatomic, strong) AFHTTPSessionManager *afSessionManager;
@@ -24,6 +24,14 @@
         instance = [[self alloc] init];
     });
     return instance;
+}
+
++ (void)registerHandler:(id<GQNetworkEngineProtocol>)handler {
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        delegate = handler;
+    });
 }
 
 
@@ -61,7 +69,7 @@
     for (NSString *key in headers) {
         [request setValue:headers[key] forHTTPHeaderField:key];
     }
-    
+
     __block NSURLSessionDataTask *dataTask = nil;
     dataTask = [self.afSessionManager
                 dataTaskWithRequest:request

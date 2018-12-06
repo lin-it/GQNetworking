@@ -7,9 +7,17 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol GQNetworkEngineProtocol <NSObject>
+
+
+
+@end
+
 @interface GQNetworkEngine : NSObject
 
 + (GQNetworkEngine *)sharedEngine;
+
++ (void)registerHandler:(id<GQNetworkEngineProtocol>)handler;
 
 - (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
                                        URLString:(NSString *)URLString
